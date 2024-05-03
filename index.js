@@ -12,7 +12,7 @@ function init() {
 function estimateValues() {
 
     let numberOfRent = document.getElementById("rentalNumberOfDate").value;
-    let dailyRate = numberOfRent * 29.99;
+    let dailyRate = Number(numberOfRent) * 29.99;
 
     let electronicTollRate;
 
@@ -45,7 +45,7 @@ function estimateValues() {
     if (document.getElementById("yesUnder25").checked) {
         under25Surcharge = 0.3 * totalRate;
     } else if (document.getElementById("notUnder25").checked) {
-        under25Surcharge = 0
+        under25Surcharge = 0;
     }
 
     let newTotalRate = totalRate + under25Surcharge;
@@ -59,21 +59,28 @@ function estimateValues() {
 
     messageBox1.innerHTML = result1;
 
-    let result2 = "Options: $" + totalOptionsRate.toFixed(2);
-
+    
     let messageBox2 = document.getElementById("resultDisplayBox2");
-
+    
     if ( totalOptionsRate > 0) {
+
+        let result2 = "Options: $" + totalOptionsRate.toFixed(2);
+
          messageBox2.innerHTML = result2;
+    } else {
+        messageBox2.innerHTML = " "
     }
 
-    let result3 = "Under 25 Surcharge: $" + under25Surcharge.toFixed(2);
-
     let messageBox3 = document.getElementById("resultDisplayBox3");
-
+    
     if ( under25Surcharge > 0) {
 
+        let result3 = "Under 25 Surcharge: $" + under25Surcharge.toFixed(2);
+
         messageBox3.innerHTML = result3;
+    } else if (under25Surcharge == 0) {
+
+        messageBox3.innerHTML = " ";
     }
 
     let totalResult = "Total Due: $" + newTotalRate.toFixed(2);
